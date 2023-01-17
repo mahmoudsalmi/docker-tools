@@ -1,9 +1,13 @@
 # [SALMI.DEV] Docker tools scripts
 
+## Requirments
+
+- shell-tools
+
 ## Instalation
 
 ```sh
-stow ./tools
+stow ./tools -t $HOME
 ```
 
 ## Backup/Restore volumes
