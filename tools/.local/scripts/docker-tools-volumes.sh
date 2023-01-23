@@ -127,6 +127,7 @@ editor() {
   if [ -z "$VOLUME_NAME" ]; then
     exitError "Not enough arguments!\nfor more information: docker-tools volumes help" 10
   fi
+  
   # check if volume exists
   if ! docker volume inspect --format '{{.Name}}' "$VOLUME_NAME" > /dev/null 2>&1; then
     exitError "Volume [$VOLUME_NAME] does not exist !" 13
@@ -142,6 +143,7 @@ editor() {
   fi
 
   if ! docker run -it --rm \
+    --name docker-volume-editor \
     -v "$DOCKER_EDITOR_VOLUME:/root/" \
     -v "${VOLUME_NAME}:/volume" \
     kickstart-nvim;
