@@ -22,6 +22,8 @@ if [ ! -d "${DOCKER_TOOLS_VOLUMES_BKP}" ]; then
   exitError "Folder [ ${DOCKER_TOOLS_VOLUMES_BKP} ] invalid or not exists !\n" 1>&2 12
 fi
 
+DOCKER_IMAGE_EDITOR="jonlabelle/network-tools"
+
 backup() {
   VOLUME_NAME=$1
   BKP_FILENAME="$2" 
@@ -146,7 +148,7 @@ editor() {
     --name docker-volume-editor \
     -v "$DOCKER_EDITOR_VOLUME:/root/" \
     -v "${VOLUME_NAME}:/volume" \
-    kickstart-nvim;
+    ${DOCKER_IMAGE_EDITOR};
   then
     exitError "Failed to start kickstart-nvim container" 18
   fi
